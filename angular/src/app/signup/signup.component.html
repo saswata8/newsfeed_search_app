@@ -1,0 +1,55 @@
+<nav class="navbar navbar-inverse bg-dark">
+    <div class="navbar-header"><span class="fa fa-newspaper-o" style="font-size:48px;color:whitesmoke"></span>&nbsp;&nbsp;&nbsp;<b>BREAKING NEWS</b></div>
+</nav>
+
+    <div class="container">
+    <h1>News Analyst Registration</h1>
+    <p>Please fill in this form to create an account. All fields are mandatory.</p>
+
+    <form [formGroup] ="formdata" (ngSubmit) = "onRegister(formdata.value)">
+
+        <div [ngClass] ="{'is-invalid' : myForm.name.errors && submitted}">
+
+        <label for="name"><strong>Name</strong></label>
+        <input type="text" id="name" placeholder="Enter Name" formControlName="name" class="form-control" required>
+
+        <div class="alert alert-danger" *ngIf="submitted && myForm.name.errors">
+            <span id="nameEmptyError" *ngIf="myForm.name.errors.required">Name is required</span>
+            <span id="namePatternError" *ngIf="myForm.name.errors.pattern">Name can only be alphabets</span>
+            <span id="nameMinLengthError" *ngIf="myForm.name.errors.minlength">Name must be between 2 and 30 characters</span>
+            <span id="nameMaxLengthError" *ngIf="myForm.name.errors.maxlength">Name must be between 2 and 30 characters</span>
+        </div>
+      </div> 
+
+      <div [ngClass] ="{'is-invalid' : myForm.email.errors && submitted}">
+        <label for="email"><strong>Email</strong></label>
+        <input type="text" id="email" placeholder="Enter Email" name="email" formControlName="email" class="form-control" required>
+
+        <div class="alert alert-danger" *ngIf="submitted && myForm.email.errors">
+            <span id="emailEmptyError" *ngIf="myForm.email.errors.required">Email is required</span>
+            <span id="emailPatternError" *ngIf="myForm.email.errors.pattern">Email is not valid</span>
+        </div>
+    </div> 
+
+    <div [ngClass] ="{'is-invalid' : myForm.password.errors && submitted}">
+      <label for="password"><strong>Password</strong></label>
+      <input type="password" id = "password" placeholder="Enter Password" name="password" formControlName="password" class="form-control" required>
+
+      <div class="alert alert-danger" *ngIf="submitted && myForm.password.errors">
+          <span id="passwordEmptyError" *ngIf="myForm.password.errors.required">Password is required</span>
+          <span id="passwordMinLengthError" *ngIf="myForm.password.errors.minlength">Password must be at least 8 characters</span>
+          <span id="passwordPatternError" *ngIf="myForm.password.errors.pattern">Password must contain at least 1 capital letter, 1 small letter, 1 digit and 1 special character</span>
+      </div>
+    </div> 
+
+      <button type="submit" id="register" class="registerbtn">Register</button>
+  </form>
+    
+  </div>
+  <div class="container login">
+    <p>Already have an account? <a routerLink="/login">Log in</a></p>
+  </div>
+
+
+
+

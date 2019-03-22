@@ -1,0 +1,35 @@
+<nav class="navbar navbar-inverse bg-dark">
+  <div class="navbar-header"><span class="fa fa-newspaper-o" style="font-size:48px;color:whitesmoke"></span>&nbsp;&nbsp;&nbsp;<b>BREAKING NEWS</b></div>
+</nav>
+
+<div class =container>
+  <h1>News Analyst Login</h1>
+  <p>Login to your account. All fields are mandatory.</p>
+
+<form [formGroup] = "formdata" (ngSubmit) = "onLogin(formdata.value)">   
+
+  <div [ngClass]= "{'is-invalid': myForm.email.errors && submitted}">
+    <label for="email"><strong>Email</strong></label>
+    <input type="text" id="email" placeholder="Enter Email" formControlName="email" class="form-control" required>
+    <div class="alert alert-danger" *ngIf = "submitted && myForm.email.errors">
+      <span id="emailEmptyError" *ngIf="myForm.email.errors.required">Email is required</span>
+    </div>
+  </div>
+
+  <div [ngClass]= "{'is-invalid': myForm.password.errors && submitted}">
+    <label for="password"><strong>Password</strong></label>
+    <input type="password" id="password" placeholder="Enter Password" name="password" formControlName="password" class="form-control" required>
+
+    <div class="alert alert-danger" *ngIf = "submitted && myForm.password.errors">
+        <span id="passwordEmptyError" *ngIf="myForm.password.errors.required">Password is required</span>
+    </div>
+  </div>
+
+  <button type="submit" id="loginbtn" class="loginbtn">Login</button>
+</form>
+
+</div>
+
+<div class="container signin">
+  <p>Don't have an account? <a routerLink="../">Register</a></p>
+</div>

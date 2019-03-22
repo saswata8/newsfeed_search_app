@@ -1,0 +1,45 @@
+<nav class="navbar navbar-inverse bg-dark">
+  <div class="navbar-header"><span class="fa fa-newspaper-o" style="font-size:48px;color:whitesmoke"></span>&nbsp;&nbsp;&nbsp;<b>BREAKING NEWS</b></div>
+  <div>
+    <button class="btn btn-info navbar-btn" id="searchHistory" routerLink = "/search-history"><span class="fa fa-history"></span>&nbsp;My Search History</button>&nbsp;
+    <button class="btn btn-danger navbar-btn" id="logout" (click) = "onLogout()"><span class="fa fa-sign-out"></span>&nbsp;Logout</button>
+  </div>
+</nav>
+<br>
+<div class="container">
+    <form [formGroup]="formdata" (ngSubmit)="searchArticles(formdata.value)" >
+    <div class="row">
+      <div class="col">
+        <input type="search" id="search" class="form-control" formControlName="search" placeholder="Search by news topics or keywords..." required>
+        <div class="alert alert-danger" *ngIf = "submitted && myForm.search.errors">
+          <span *ngIf="myForm.search.errors.required">Field is required</span>
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="search" id="searchbtn" class="btn btn-success"><span class="fa fa-search"></span>&nbsp;Search</button>
+      </div>
+    </div>
+    </form>
+      
+</div>
+<br>
+<div class="container row col-12">
+<div class="col-md-4 col-sm-12 col-lg-3 card mx-auto my-3" *ngFor="let article of mArticles">
+    <div style="border: 0">
+      <!-- <div class="card-img-top" [ngStyle]="{'background-image': 'url(../assets/images/'+ article.source.id +'.png)'}" -->
+        <!-- class="example-header-image"></div> -->
+      <img style="width:100%;height:200px;" src={{article.urlToImage}} alt="">
+      <h4 class="card-title">{{article.title}}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{article.source.name}}</h6>
+      
+      <div class="card-body">
+        <p>
+          {{article.description}}
+        </p>
+      </div>
+      <a href={{article.url}} target="_blank" class="card-link"><i class="fa fa-eye" style="font-size:18px"> Read
+          More...</i></a>
+    </div>
+    <br>
+  </div>
+</div>
